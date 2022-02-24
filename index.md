@@ -2,28 +2,37 @@
 
 ## Introduction
 
+Being a sports analyst requires one to efficiently predict outcomes of games and figure out which players are most likely to score high number of points, provide assists, gather rebounds, etc. in each team. 
+
+One of the most interesting problem for analysts is figuring out which players to draft/trade who can positively impact the winning probabilities of one’s team by gelling with the given set of players. 
+
+We try to tackle the two objectives above by using various ML approaches and figure out which performs the best.
+
+**We found the following papers relevant to our initial analysis:**
+
 [1] Predicts the outcomes of basketball games. The author improves on the shortcomings of SVM model by development of a Hybrid Fuzzy-SVM (HFSVM) model. A fuzzy membership function is applied to the input data which makes different contributions to the decision surface learning. This enhances SVM to reduce the effect of noise and outliers in data inputs directly reducing the net error effect. While HFSVM performs better than SVM for classification, it is still not suitable for large datasets. Therefore, we will explore several other methods including regression analysis, neural networks, random forests, etc. which often overcome the shortcomings of SVM/HFSVM.
 
-[2]Describes an approach towards result and spread prediction in basketball. They have used the data from 2009/10 NBA season for modeling. Their approach relies heavily on feature independence assumption. They have used Naive Bayes to classify whether a team will win and linear regression to predict the spread. Variable selection is used to limit the number of features. The approach could be improved by using Dimensionality Reduction, a diverse set of more powerful classifiers that don’t rely on feature independence assumption, Poisson regression.
+[2] Using a dataset of 650 matches to predict National Basketball Association (NBA) results. They used field-goal, three-point percentage, and free-throw percentage; offensive and defensive rebounds; points, turnovers, assists, steals, blocks, turnovers, personal fouls, and points. The authors tried prediction with Bayesian Belief Networks, Feed Forward Neural Networks, Probabilistic Neural Networks, Generalized Neural Networks, among others. They found that averages of variables in the current season performed better than average statistics across the past five matches. Their best correctly predicted the winning team 74.3% of the time on average, which was better than experts from USA Today 2008 who achieved 68.7%.
 
-[3] Using a dataset of 650 matches to predict National Basketball Association (NBA) results. They used field-goal, three-point percentage, and free-throw percentage; offensive and defensive rebounds; points, turnovers, assists, steals, blocks, turnovers, personal fouls, and points. The authors tried prediction with Bayesian Belief Networks, Feed Forward Neural Networks, Probabilistic Neural Networks, Generalized Neural Networks, among others. They found that averages of variables in the current season performed better than average statistics across the past five matches. Their best correctly predicted the winning team 74.3% of the time on average, which was better than experts from USA Today 2008 who achieved 68.7%.
+[3] Describes an approach towards result and spread prediction in basketball. They have used the data from 2009/10 NBA season for modeling. Their approach relies heavily on feature independence assumption. They have used Naive Bayes to classify whether a team will win and linear regression to predict the spread. Variable selection is used to limit the number of features. The approach could be improved by using Dimensionality Reduction, a diverse set of more powerful classifiers that don’t rely on feature independence assumption, Poisson regression.
 
 
 ## Problem Definition
 
 As an initial analysis we would try to predict probability of winning.
-However, if this proves to be less challenging than expected we have the following problem in mind:
-•	Clustering players based on performance and playing type, to suggest best transfers for a team.
-•	We will use clustering to group players based on their performance (game level) data. Then visualize the composition of player types in known successful teams and use these to suggest new players.
 
+However, if this proves to be less challenging than expected we have the following problem in mind:
+
+* Clustering players based on performance and playing type, to suggest best transfers for a team.
+* We will use clustering to group players based on their performance (game level) data. Then visualize the composition of player types in known successful teams and use these to suggest new players.
 
 ## Methods
 
-Dimensionality Reduction – PCA, UMAP etc.
+We plan to use the following methods:
 
-Clustering – DBSCAN, HDBSCAN, K-Means, GMM etc.
-
-Prediction - Regression analysis, SVM, Logistic Regression, Neural Networks, Boosting/Bagging methods etc.
+* Dimensionality Reduction – PCA, UMAP etc.
+* Clustering – DBSCAN, HDBSCAN, K-Means, GMM etc.
+* Prediction - Regression analysis, SVM, Logistic Regression, Neural Networks, Boosting/Bagging methods etc.
 
 
 ## Potential Results
@@ -38,9 +47,9 @@ Aliquam erat volutpat. Aliquam ac est at felis ullamcorper posuere sit amet et d
 ![Timeline](/assets/ganttchart.png)
 
 ## References
-[1] 	H. Kaur and S. Jain, "Machine Learning Approaches to Predict Basketball Game Outcome," 2017.
 
-[2] 	B. Loeffelholz, E. Bednar and K. W. Bauer, "Predicting NBA Games Using Neural Networks," Journal of Quantitative Analysis in Sports, vol. 5, no. 1, 1 2009. 
+[1] 	[H. Kaur and S. Jain, "Machine Learning Approaches to Predict Basketball Game Outcome," 2017.](https://ieeexplore.ieee.org/document/8344688)
 
-[3] 	D. Miljković, L. Gajić, A. Kovačević and Z. Konjović, "The use of data mining for basketball matches outcomes prediction," SIISY 2010 - 8th IEEE International Symposium on Intelligent Systems and Informatics, pp. 309-312, 2010. 
+[2] 	[B. Loeffelholz, E. Bednar and K. W. Bauer, "Predicting NBA Games Using Neural Networks," Journal of Quantitative Analysis in Sports, vol. 5, no. 1, 1 2009.](https://www.degruyter.com/document/doi/10.2202/1559-0410.1156/html)
 
+[3] 	[D. Miljković, L. Gajić, A. Kovačević and Z. Konjović, "The use of data mining for basketball matches outcomes prediction," SIISY 2010 - 8th IEEE International Symposium on Intelligent Systems and Informatics, pp. 309-312, 2010.](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5647440)

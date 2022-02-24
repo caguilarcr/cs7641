@@ -4,7 +4,7 @@
 
 Being a sports analyst requires one to efficiently predict outcomes of games and figure out which players are most likely to score high number of points, provide assists, gather rebounds, etc. in each team. 
 
-One of the most interesting problem for analysts is figuring out which players to draft/trade who can positively impact the winning probabilities of one’s team by gelling with the given set of players. 
+Another problem for analysts is figuring out which players to draft/trade who can positively impact the winning probabilities of one’s team by gelling with the given set of players. 
 
 We try to tackle the two objectives above by using various ML approaches and figure out which performs the best.
 
@@ -12,7 +12,7 @@ We try to tackle the two objectives above by using various ML approaches and fig
 
 [1] uses Hybrid Fuzzy-SVM (HFSVM) model. A fuzzy membership function is applied to the input data which makes different contributions to the decision surface learning. This enhances SVM to reduce the effect of noise and outliers. But HFSVM like SVM is not suitable for large datasets. [2] Used a dataset of 650 matches to predict National Basketball Association (NBA) results. The paper uses Bayesian Belief Networks, Feed Forward Neural Networks, Probabilistic Neural Networks, Generalized Neural Networks, among others. Their model was able to outperform experts from USA Today. [3]'s approach relies heavily on feature independence assumption. They have used Naive Bayes to predict winning and linear regression to predict the spread. Variable selection is used to limit the number of features. 
 
-All three aproaches lack application of dimensionality reduction, application diverse set of more powerful classifiers (that don’t rely on feature independence assumption etc.), count based Poisson regression models. We also plan to use a dataset which is 3 times bigger than the dataset used in these three.
+All three aproaches lack application of dimensionality reduction, application of diverse set of classifiers (that don’t rely on feature independence assumption etc.) and count based Poisson regression models. We also plan to use a dataset which is 3 times bigger than the dataset used in these three.
 
 ## Problem Definition
 

@@ -19,7 +19,9 @@ However, if this proves to be less challenging than expected we have the followi
 ## Methods
 
 Dimensionality Reduction – PCA, UMAP etc.
+
 Clustering – DBSCAN, HDBSCAN, K-Means, GMM etc.
+
 Prediction - Regression analysis, SVM, Logistic Regression, Neural Networks, Boosting/Bagging methods etc.
 
 
@@ -39,6 +41,8 @@ Aliquam erat volutpat. Aliquam ac est at felis ullamcorper posuere sit amet et d
 
 ## References
 [1] 	H. Kaur and S. Jain, "Machine Learning Approaches to Predict Basketball Game Outcome," 2017.
+
 [2] 	B. Loeffelholz, E. Bednar and K. W. Bauer, "Predicting NBA Games Using Neural Networks," Journal of Quantitative Analysis in Sports, vol. 5, no. 1, 1 2009. 
+
 [3] 	D. Miljković, L. Gajić, A. Kovačević and Z. Konjović, "The use of data mining for basketball matches outcomes prediction," SIISY 2010 - 8th IEEE International Symposium on Intelligent Systems and Informatics, pp. 309-312, 2010. 
 

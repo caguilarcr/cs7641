@@ -34,10 +34,7 @@ Aliquam erat volutpat. Aliquam ac est at felis ullamcorper posuere sit amet et d
 
 
 ## Proposed Timeline
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed accumsan erat. Nullam id ligula consequat, imperdiet tortor vel, tempor lorem. Aenean mi lectus, sollicitudin nec urna non, lobortis pulvinar mi. Integer quam lacus, auctor at tellus ac, egestas malesuada mauris. Curabitur vehicula, leo ut semper pretium, diam nisl placerat nisl, nec suscipit dui neque sit amet sem. Donec blandit, odio varius condimentum mattis, augue neque posuere tellus, nec congue urna nisl vel dui. Donec fringilla erat vitae massa viverra ultrices. Pellentesque nunc dolor, feugiat ut mi ut, rutrum sagittis odio. Mauris ut convallis turpis, sit amet blandit neque. Suspendisse eu justo blandit, placerat odio vitae, tempor massa. Donec pulvinar cursus nisl, eu rutrum nulla congue vel. Nunc non dapibus nisi. Nunc non nisl at neque laoreet iaculis. Donec congue ligula non sem maximus, sit amet hendrerit lorem fermentum. Sed dapibus massa massa, at faucibus nisl pharetra id. Cras tristique tempor neque, quis hendrerit erat feugiat non.
-
-Aliquam erat volutpat. Aliquam ac est at felis ullamcorper posuere sit amet et dui. Vestibulum semper faucibus mattis. Nullam urna mi, malesuada a turpis quis, semper ultrices nunc. Nam arcu elit, maximus at cursus eu, ultricies vel purus. Fusce sit amet lorem semper, venenatis velit sed, varius massa. Proin ut purus faucibus dolor ultrices pellentesque sit amet nec nibh. Fusce tincidunt aliquam lacus molestie pellentesque. Donec maximus magna nisl, at imperdiet augue molestie vel. Etiam nisl nulla, rutrum in accumsan ac, egestas vitae velit. Duis ornare tortor in nulla vulputate tincidunt. Mauris leo elit, egestas at sodales eu, auctor a justo. Vivamus diam eros, efficitur id felis quis, luctus pulvinar libero. Praesent imperdiet faucibus dapibus. Morbi quis risus libero. Maecenas pharetra eros ut metus tempor, nec egestas sem rutrum.
+![Timeline](/assets/ganttchart.png)
 
 ## References
 [1] 	H. Kaur and S. Jain, "Machine Learning Approaches to Predict Basketball Game Outcome," 2017.

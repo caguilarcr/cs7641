@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/caguilarcr/cs7641/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Introduction
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed accumsan erat. Nullam id ligula consequat, imperdiet tortor vel, tempor lorem. Aenean mi lectus, sollicitudin nec urna non, lobortis pulvinar mi. Integer quam lacus, auctor at tellus ac, egestas malesuada mauris. Curabitur vehicula, leo ut semper pretium, diam nisl placerat nisl, nec suscipit dui neque sit amet sem. Donec blandit, odio varius condimentum mattis, augue neque posuere tellus, nec congue urna nisl vel dui. Donec fringilla erat vitae massa viverra ultrices. Pellentesque nunc dolor, feugiat ut mi ut, rutrum sagittis odio. Mauris ut convallis turpis, sit amet blandit neque. Suspendisse eu justo blandit, placerat odio vitae, tempor massa. Donec pulvinar cursus nisl, eu rutrum nulla congue vel. Nunc non dapibus nisi. Nunc non nisl at neque laoreet iaculis. Donec congue ligula non sem maximus, sit amet hendrerit lorem fermentum. Sed dapibus massa massa, at faucibus nisl pharetra id. Cras tristique tempor neque, quis hendrerit erat feugiat non.
 
-### Markdown
+Aliquam erat volutpat. Aliquam ac est at felis ullamcorper posuere sit amet et dui. Vestibulum semper faucibus mattis. Nullam urna mi, malesuada a turpis quis, semper ultrices nunc. Nam arcu elit, maximus at cursus eu, ultricies vel purus. Fusce sit amet lorem semper, venenatis velit sed, varius massa. Proin ut purus faucibus dolor ultrices pellentesque sit amet nec nibh. Fusce tincidunt aliquam lacus molestie pellentesque. Donec maximus magna nisl, at imperdiet augue molestie vel. Etiam nisl nulla, rutrum in accumsan ac, egestas vitae velit. Duis ornare tortor in nulla vulputate tincidunt. Mauris leo elit, egestas at sodales eu, auctor a justo. Vivamus diam eros, efficitur id felis quis, luctus pulvinar libero. Praesent imperdiet faucibus dapibus. Morbi quis risus libero. Maecenas pharetra eros ut metus tempor, nec egestas sem rutrum.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Problem Definition
 
-```markdown
-Syntax highlighted code block
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed accumsan erat. Nullam id ligula consequat, imperdiet tortor vel, tempor lorem. Aenean mi lectus, sollicitudin nec urna non, lobortis pulvinar mi. Integer quam lacus, auctor at tellus ac, egestas malesuada mauris. Curabitur vehicula, leo ut semper pretium, diam nisl placerat nisl, nec suscipit dui neque sit amet sem. Donec blandit, odio varius condimentum mattis, augue neque posuere tellus, nec congue urna nisl vel dui. Donec fringilla erat vitae massa viverra ultrices. Pellentesque nunc dolor, feugiat ut mi ut, rutrum sagittis odio. Mauris ut convallis turpis, sit amet blandit neque. Suspendisse eu justo blandit, placerat odio vitae, tempor massa. Donec pulvinar cursus nisl, eu rutrum nulla congue vel. Nunc non dapibus nisi. Nunc non nisl at neque laoreet iaculis. Donec congue ligula non sem maximus, sit amet hendrerit lorem fermentum. Sed dapibus massa massa, at faucibus nisl pharetra id. Cras tristique tempor neque, quis hendrerit erat feugiat non.
 
-# Header 1
-## Header 2
-### Header 3
+Aliquam erat volutpat. Aliquam ac est at felis ullamcorper posuere sit amet et dui. Vestibulum semper faucibus mattis. Nullam urna mi, malesuada a turpis quis, semper ultrices nunc. Nam arcu elit, maximus at cursus eu, ultricies vel purus. Fusce sit amet lorem semper, venenatis velit sed, varius massa. Proin ut purus faucibus dolor ultrices pellentesque sit amet nec nibh. Fusce tincidunt aliquam lacus molestie pellentesque. Donec maximus magna nisl, at imperdiet augue molestie vel. Etiam nisl nulla, rutrum in accumsan ac, egestas vitae velit. Duis ornare tortor in nulla vulputate tincidunt. Mauris leo elit, egestas at sodales eu, auctor a justo. Vivamus diam eros, efficitur id felis quis, luctus pulvinar libero. Praesent imperdiet faucibus dapibus. Morbi quis risus libero. Maecenas pharetra eros ut metus tempor, nec egestas sem rutrum.
 
-- Bulleted
-- List
+## Data Collections & Preprocessing
 
-1. Numbered
-2. List
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed accumsan erat. Nullam id ligula consequat, imperdiet tortor vel, tempor lorem. Aenean mi lectus, sollicitudin nec urna non, lobortis pulvinar mi. Integer quam lacus, auctor at tellus ac, egestas malesuada mauris. Curabitur vehicula, leo ut semper pretium, diam nisl placerat nisl, nec suscipit dui neque sit amet sem. Donec blandit, odio varius condimentum mattis, augue neque posuere tellus, nec congue urna nisl vel dui. Donec fringilla erat vitae massa viverra ultrices. Pellentesque nunc dolor, feugiat ut mi ut, rutrum sagittis odio. Mauris ut convallis turpis, sit amet blandit neque. Suspendisse eu justo blandit, placerat odio vitae, tempor massa. Donec pulvinar cursus nisl, eu rutrum nulla congue vel. Nunc non dapibus nisi. Nunc non nisl at neque laoreet iaculis. Donec congue ligula non sem maximus, sit amet hendrerit lorem fermentum. Sed dapibus massa massa, at faucibus nisl pharetra id. Cras tristique tempor neque, quis hendrerit erat feugiat non.
 
-**Bold** and _Italic_ and `Code` text
+Aliquam erat volutpat. Aliquam ac est at felis ullamcorper posuere sit amet et dui. Vestibulum semper faucibus mattis. Nullam urna mi, malesuada a turpis quis, semper ultrices nunc. Nam arcu elit, maximus at cursus eu, ultricies vel purus. Fusce sit amet lorem semper, venenatis velit sed, varius massa. Proin ut purus faucibus dolor ultrices pellentesque sit amet nec nibh. Fusce tincidunt aliquam lacus molestie pellentesque. Donec maximus magna nisl, at imperdiet augue molestie vel. Etiam nisl nulla, rutrum in accumsan ac, egestas vitae velit. Duis ornare tortor in nulla vulputate tincidunt. Mauris leo elit, egestas at sodales eu, auctor a justo. Vivamus diam eros, efficitur id felis quis, luctus pulvinar libero. Praesent imperdiet faucibus dapibus. Morbi quis risus libero. Maecenas pharetra eros ut metus tempor, nec egestas sem rutrum.
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/caguilarcr/cs7641/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.

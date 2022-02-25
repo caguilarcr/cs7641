@@ -33,7 +33,11 @@ We plan to use the following methods:
 
 
 ## Potential Results
+The main goal of this work is to create a clear metric to compare which prediction model is the best to predict the outcomes of a game in a season. In addition, we want to identify which features are the main predictors for the result of a match. Notably, compare the performance of team statistics vs. players statistics and regular statistics vs. advanced statistics.
 
+As a second objective, we want to create an algorithm to identify a player's style and affinity with a particular team configuration and complement team weaknesses. For example, if a team is strong on points in the paint (close to the basket), but it is weak to shoot 3-pointers, we want to find players that shoot well beyond the 3-point line. 
+
+Finally, we want to create a visualization to show team strengths and weaknesses and possible players to improve the team's chances of winning games.
 
 ## Proposed Timeline
 ![Timeline](/assets/ganttchart.png)

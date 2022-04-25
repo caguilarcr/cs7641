@@ -10,12 +10,12 @@
         </section>
         <article>
             <h1>Introduction</h1>
-            <p>Being a sports analyst requires one to efficiently predict outcomes of games and figure out which players are most likely to score high number of points, provide assists, gather rebounds, etc. in each team. </p>
-            <p>Another problem for analysts is figuring out which players to draft/trade who can positively impact the winning probabilities of one's team by gelling with the given set of players. </p>
-
+            <p>The National Basketball Association (NBA) is a professional basketball league in North America. The league is composed of 30 teams (29 in the United States and 1 in Canada) and is one of the major professional sports leagues in the United States and Canada. It is the premier men's professional basketball league in the world.</p>
+            <p>Possible applications of Machine Learning to the NBA include efficient prediction of outcomes, figuring out which players are most likely to score high number of points, provide assists, gather rebounds, etc. in each team. </p>
+            
             <h1>Problem Definition</h1>
-            <p>In this report we try to predict whether a team would make it to the playoffs or not given regular season statistics</p>
-
+            <p>In this project we predict whether a team would make it to the NBA playoffs or not given regular season statistics (like Average Field Goals Made, Average 2pts Made, Average Age of Players etc.)</p>
+            
             <h1>Data Collection and EDA</h1>
             <p>We had a robust data source (Basketball-Reference.com) that contained a large volume of statistics over a 24-year time span. Our initial data had 161 columns and 712 rows. Based on our knowledge of NBA, we decided to remove a few of the variables including the number of games played, number of wins/losses of a team, teams rankings based on number of wins, the team name, season, arena name, attendance, etc. as either these directly influenced whether a team made it to the playoffs/or not(e.g.: team rank, given top 8 teams based on number of wins in each conference qualify for playoffs, including it as a feature did not make sense) or were not relevant (e.g.: arena name, attendance, etc. ). Our final dataset contained 134 features, 1 response variable (Playoffs: 0 or 1) and 712 rows.</p>
             
@@ -48,20 +48,24 @@
             </table>
 
             <h2>Exploratory Data Analysis</h2>
+            <p>The dataset just had 1 missing entry in one feature and we removed the corresponding row to make the data clean.</p>
             <p>We make the box plot of some of the columns and to figure out how they relate with our response variable (Playoffs): </p>
             <p>As seen in the figure below, we notice that teams that make it to the playoffs generally make higher number of field goals 
                 (PP_FG), make higher number of free throws (PP_FTA), have a higher average age (Adv_Age), and have higher defensive rebound 
                 percentage (Adv_DRB_pct) as compared to teams that fail to make it to the playoffs. Also, teams that make it to the playoffs 
                 generally limit their opponents in Number of  shots (PG_Opp_FG), Number of 2 point shots (PG_Opp_X2P), Number of Free Throws (PF_Opp_FT).
             </p>
+            <figure>
             <img src='/cs7641/assets/image002.png' />
+            <figcaption>Spread of values of explanatory variables for teams making into playoffs vs. not making into playoffs</figcaption>
+            </figure>
             <p>The effect of Number of 2 point shots for the team (PP_X2P) and Number of Opponent Turnovers (PG_Opp_TOV) on whether a team makes it to the playoffs or not is not very clear. </p>
-
+            <p>In order to decrease the dimensionality of our dataset, we used Principal Component Analysis (PCA). We set the retained variance ratio to be 0.99, which left us with 5 Princial Compnents to fit out models on.</p>    
+        
             <h1>Methods</h1>
             <p>We chose to run 8 different classification models. We analyzed a gamut of algorithms with varying complexity. We wanted to compare the performance of the models taught during the class with advanced (and more complex) algorithms. We then chose top performing models and tuned hyperparameters for them. The results of the 5 algorithms for which hyperparameters were tuned are compared and results are shown in the next section.</p>
-
+            
             <h1>Results and Discussion</h1>
-            <p>We exported the dataset from the <a target="_blank" href="https://www.basketball-reference.com/">basketball reference website</a>. The dataset just had 1 missing entry in one feature and we removed the corresponding row to make the data clean.</p>
             <p>We ran 8 different classification algorithms and their comparison is shown in the table below. Note that these values are before any hyperparameter tuning.</p>
             <table>
                 <tr>
@@ -472,6 +476,14 @@
                 <tr><td>SHT_Opp_Corner_Pct</td><td>Coner_FG%</td><td>Coner 3 FG%</td></tr>
 
             </table>
+            <h1>References</h1>
+            <ol>
+                <li><a href="https://en.wikipedia.org/wiki/National_Basketball_Association">National Basketball Association</a></li>
+                <li><a href="https://www.basketball-reference.com/">Basketball Statistics and History</a></li>
+                <li><a href="https://scikit-learn.org/stable/">Scikit Learn (Python)</a></li>
+                <li><a href="https://pycaret.org/">PyCaret</a></li>
+            </ol>
+            
         </article>
         
         

@@ -1,5 +1,6 @@
 article > * {
     min-width: 0;
+    text-align: justify;
 }
 
 article > h1 {
@@ -7,7 +8,7 @@ article > h1 {
     text-align: left;
     color: #3182bd;
 }
-article > h2 {
+article > h2, article > h3 {
     color: #3182bd;
 }
 
@@ -27,9 +28,13 @@ article > p {
     margin-bottom: 20px;
 }
 
-article > ul,ol {
+article > ul, ol {
     font-family: Georgia,Cambria,"Times New Roman",Times,serif;
     font-size: 21px;
+}
+
+article > ol > li {
+    padding-left: 8px;
 }
 
 article > .aside {

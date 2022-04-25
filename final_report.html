@@ -1,0 +1,479 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/cs7641/assets/styles.css" />
+    </head>
+    <body>
+        <section class="header">
+            <h1>Final Report</h1>
+            <h1>NBA Game Prediction Models Analysis</h1>
+            <p></p>
+        </section>
+        <article>
+            <h1>Introduction</h1>
+            <p>Being a sports analyst requires one to efficiently predict outcomes of games and figure out which players are most likely to score high number of points, provide assists, gather rebounds, etc. in each team. </p>
+            <p>Another problem for analysts is figuring out which players to draft/trade who can positively impact the winning probabilities of one's team by gelling with the given set of players. </p>
+
+            <h1>Problem Definition</h1>
+            <p>In this report we try to predict whether a team would make it to the playoffs or not given regular season statistics</p>
+
+            <h1>Data Collection and EDA</h1>
+            <p>We had a robust data source (Basketball-Reference.com) that contained a large volume of statistics over a 24-year time span. Our initial data had 161 columns and 712 rows. Based on our knowledge of NBA, we decided to remove a few of the variables including the number of games played, number of wins/losses of a team, teams rankings based on number of wins, the team name, season, arena name, attendance, etc. as either these directly influenced whether a team made it to the playoffs/or not(e.g.: team rank, given top 8 teams based on number of wins in each conference qualify for playoffs, including it as a feature did not make sense) or were not relevant (e.g.: arena name, attendance, etc. ). Our final dataset contained 134 features, 1 response variable (Playoffs: 0 or 1) and 712 rows.</p>
+            
+            <h2>Data Description</h2>
+            <p>Our dataset contains columns aggregated from 4 tables:</p>
+            <ul>
+                <li>PG: Per Game Stats</li>
+                <li>PP: Per 100 Poss Stats</li>
+                <li>Adv: Advanced Stats</li>
+                <li>SHT: Shooting Stats</li>
+            </ul>
+            <p>We have named the columns in the following manner:
+               <strong>{Table}_Stats</strong> or <strong>{Table}_Opp_Stats</strong> where <strong>{Table}</strong> is one of PG, PP, Adv or SHT. Presence of Opp in the column name indicates that the corresponding statistic is for the opponent. Some of the important stats are: </p></p>                
+
+            <table>
+                <tr> <th>Data</th> <th>Description</th> </tr>
+
+                <tr> <td>FG</td> <td>Average Field Goals Made</td> </tr>
+                <tr> <td>FTA</td> <td>Average Free Throwns Attempted</td> </tr>
+                <tr> <td>X2P</td> <td>Average 2pts Made</td> </tr>
+                <tr> <td>TOV</td> <td>Average Turnovers</td> </tr>
+                <tr> <td>DRB</td> <td>Average Defensive Rebounds</td> </tr>
+                <tr> <td>Age</td> <td>Average Age of Players</td> </tr>
+                <tr> <td>BLK</td> <td>Average Blocks</td> </tr>
+                <tr> <td>STL</td> <td>Average Steals</td> </tr>
+                <tr> <td>PF</td> <td>Average Personal Fouls</td> </tr>
+                <tr> <td>X3P</td> <td>Average 3pts Made</td> </tr>
+                <tr> <td>ORB</td> <td>Average Offensive Rebounds</td> </tr>
+                <tr> <td>FGA</td> <td>Average Field Goal Attempted</td> </tr>
+            </table>
+
+            <h2>Exploratory Data Analysis</h2>
+            <p>We make the box plot of some of the columns and to figure out how they relate with our response variable (Playoffs): </p>
+            <p>As seen in the figure below, we notice that teams that make it to the playoffs generally make higher number of field goals 
+                (PP_FG), make higher number of free throws (PP_FTA), have a higher average age (Adv_Age), and have higher defensive rebound 
+                percentage (Adv_DRB_pct) as compared to teams that fail to make it to the playoffs. Also, teams that make it to the playoffs 
+                generally limit their opponents in Number of  shots (PG_Opp_FG), Number of 2 point shots (PG_Opp_X2P), Number of Free Throws (PF_Opp_FT).
+            </p>
+            <img src='/cs7641/assets/image002.png' />
+            <p>The effect of Number of 2 point shots for the team (PP_X2P) and Number of Opponent Turnovers (PG_Opp_TOV) on whether a team makes it to the playoffs or not is not very clear. </p>
+
+            <h1>Methods</h1>
+            <p>We chose to run 8 different classification models. We analyzed a gamut of algorithms with varying complexity. We wanted to compare the performance of the models taught during the class with advanced (and more complex) algorithms. We then chose top performing models and tuned hyperparameters for them. The results of the 5 algorithms for which hyperparameters were tuned are compared and results are shown in the next section.</p>
+
+            <h1>Results and Discussion</h1>
+            <p>We exported the dataset from the <a target="_blank" href="https://www.basketball-reference.com/">basketball reference website</a>. The dataset just had 1 missing entry in one feature and we removed the corresponding row to make the data clean.</p>
+            <p>We ran 8 different classification algorithms and their comparison is shown in the table below. Note that these values are before any hyperparameter tuning.</p>
+            <table>
+                <tr>
+                    <th>Model</th>
+                    <th class="number">Accuracy</th>
+                    <th class="number">AUC</th>
+                    <th class="number">Recall</th>
+                    <th class="number">Prec.</th>
+                    <th class="number">F1</th>
+                </tr>
+                <tr>
+                    <td>Naive Bayes</td>
+                    <td class="number">0.6969</td>
+                    <td class="number">0.7580</td>
+                    <td class="number">0.7499</td>
+                    <td class="number">0.7070</td>
+                    <td class="number">0.7237</td>
+                </tr>
+                <tr>
+                    <td>Logistic Regression</td>
+                    <td class="number">0.6869</td>
+                    <td class="number">0.7554</td>
+                    <td class="number">0.7382</td>
+                    <td class="number">0.6973</td>
+                    <td class="number">0.7147</td>
+                </tr>
+                <tr>
+                    <td>Random Forest Classifier</td>
+                    <td class="number">0.6649</td>
+                    <td class="number">0.7091</td>
+                    <td class="number">0.6967</td>
+                    <td class="number">0.6885</td>
+                    <td class="number">0.6897</td>
+                </tr>
+                <tr>
+                    <td>Gradient Boosting Classifier</td>
+                    <td class="number">0.6546</td>
+                    <td class="number">0.7135</td>
+                    <td class="number">0.6819</td>
+                    <td class="number">0.6763</td>
+                    <td class="number">0.6755</td>
+                </tr>
+                <tr>
+                    <td>Ada Boost Classifier</td>
+                    <td class="number">0.6447</td>
+                    <td class="number">0.6766</td>
+                    <td class="number">0.6893</td>
+                    <td class="number">0.6682</td>
+                    <td class="number">0.6755</td>
+                </tr>
+                <tr>
+                    <td>K-Neighbors Classifier</td>
+                    <td class="number">0.6347</td>
+                    <td class="number">0.6769</td>
+                    <td class="number">0.6858</td>
+                    <td class="number">0.6524</td>
+                    <td class="number">0.6664</td>
+                </tr>
+                <tr>
+                    <td>SVM - Linear Kernel</td>
+                    <td class="number">0.6185</td>
+                    <td class="number">0.0000</td>
+                    <td class="number">0.6779</td>
+                    <td class="number">0.6349</td>
+                    <td class="number">0.6538</td>
+                </tr>
+                <tr>
+                    <td>Decision Tree</td>
+                    <td class="number">0.6083</td>
+                    <td class="number">0.6066</td>
+                    <td class="number">0.6251</td>
+                    <td class="number">0.6338</td>
+                    <td class="number">0.6255</td>
+                </tr>
+            </table>
+
+            <p>As we can see from the above table, Naive Bayes, Logistic Regression, Random Forest Classifier and Gradient Boosting Classifier are top performing models. We select these 4 models for hyperparameter tuning along with SVM. Hyperparameter tuning is done using 10- fold cross validation and the metrics for each fold are shown in the tables for the respective algorithm</p>
+
+            <h2>Model 1: Naive Bayes</h2>
+            <h3>Hyperparameters</h3>
+            <pre><code>GaussianNB(priors=None, var_smoothing=0.1)</code></pre>
+
+            <h3>Cross Validation Stats</h3>
+            <table>
+                <tr>
+                    <th>Fold</th>
+                    <th class="number">Accuracy</th>
+                    <th class="number">AUC</th>
+                    <th class="number">Recall</th>
+                    <th class="number">Prec</th>
+                    <th class="number">F1</th>
+                </tr>
+                <tr><td>0</td><td class="number">0.7000</td><td class="number">0.6957</td><td class="number">0.7037</td><td class="number">0.7308</td><td class="number">0.7170</td></tr>
+                <tr><td>1</td><td class="number">0.6400</td><td class="number">0.6957</td><td class="number">0.5926</td><td class="number">0.6957</td><td class="number">0.6400</td></tr>
+                <tr><td>2</td><td class="number">0.7200</td><td class="number">0.7794</td><td class="number">0.7037</td><td class="number">0.7600</td><td class="number">0.7308</td></tr>
+                <tr><td>3</td><td class="number">0.7000</td><td class="number">0.7536</td><td class="number">0.7778</td><td class="number">0.7000</td><td class="number">0.7368</td></tr>
+                <tr><td>4</td><td class="number">0.6800</td><td class="number">0.7391</td><td class="number">0.6296</td><td class="number">0.7391</td><td class="number">0.6800</td></tr>
+                <tr><td>5</td><td class="number">0.6400</td><td class="number">0.7182</td><td class="number">0.8148</td><td class="number">0.6286</td><td class="number">0.7097</td></tr>
+                <tr><td>6</td><td class="number">0.7200</td><td class="number">0.8148</td><td class="number">0.7778</td><td class="number">0.7241</td><td class="number">0.7500</td></tr>
+                <tr><td>7</td><td class="number">0.7400</td><td class="number">0.7997</td><td class="number">0.7692</td><td class="number">0.7407</td><td class="number">0.7547</td></tr>
+                <tr><td>8</td><td class="number">0.6939</td><td class="number">0.7826</td><td class="number">0.7692</td><td class="number">0.6897</td><td class="number">0.7273</td></tr>
+                <tr><td>9</td><td class="number">0.7755</td><td class="number">0.8077</td><td class="number">0.8462</td><td class="number">0.7586</td><td class="number">0.8000</td></tr>
+                <tr><td>Mean</td><td class="number">0.7009</td><td class="number">0.7586</td><td class="number">0.7385</td><td class="number">0.7167</td><td class="number">0.7246</td></tr>
+                <tr><td>Std</td><td class="number">0.0397</td><td class="number">0.0427</td><td class="number">0.0761</td><td class="number">0.0377</td><td class="number">0.0411</td></tr>
+
+            </table>
+
+            <h3>ROC Curve</h3>
+            <img src="/cs7641/assets/final_report/01_nb_roc.png" />
+
+            <h2>Model 2: Logistic Regression</h2>
+            <h3>Hyperparameters</h3>
+            <pre><code>LogisticRegression (C=0.049, class_weight='balanced', dual=False, fit_intercept=True, intercept_scaling=1, 11_ratio=None,
+                    max_iter=1000, multi_class='auto', n_jobs=None, penalty='12', random_state=123, solver='lbfgs', tol=0.0001,
+                    verbose=0, warm_start=False)</code></pre>
+
+            <h3>Cross Validation Stats</h3>
+            <table>
+                <tr>
+                    <th>Fold</th>
+                    <th class="number">Accuracy</th>
+                    <th class="number">AUC</th>
+                    <th class="number">Recall</th>
+                    <th class="number">Prec</th>
+                    <th class="number">F1</th>
+                </tr>
+                <tr><td>0</td><td class="number">0.7000</td><td class="number">0.7230</td><td class="number">0.7037</td><td class="number">0.7308</td><td class="number">0.7170</td></tr>
+                <tr><td>1</td><td class="number">0.6200</td><td class="number">0.6795</td><td class="number">0.5185</td><td class="number">0.7000</td><td class="number">0.5957</td></tr>
+                <tr><td>2</td><td class="number">0.7200</td><td class="number">0.7681</td><td class="number">0.6667</td><td class="number">0.7826</td><td class="number">0.7200</td></tr>
+                <tr><td>3</td><td class="number">0.7000</td><td class="number">0.7874</td><td class="number">0.7407</td><td class="number">0.7143</td><td class="number">0.7273</td></tr>
+                <tr><td>4</td><td class="number">0.6400</td><td class="number">0.7488</td><td class="number">0.6296</td><td class="number">0.6800</td><td class="number">0.6538</td></tr>
+                <tr><td>5</td><td class="number">0.6600</td><td class="number">0.6940</td><td class="number">0.8148</td><td class="number">0.6471</td><td class="number">0.7213</td></tr>
+                <tr><td>6</td><td class="number">0.7600</td><td class="number">0.8325</td><td class="number">0.8148</td><td class="number">0.7586</td><td class="number">0.7857</td></tr>
+                <tr><td>7</td><td class="number">0.7000</td><td class="number">0.7804</td><td class="number">0.7308</td><td class="number">0.7037</td><td class="number">0.7170</td></tr>
+                <tr><td>8</td><td class="number">0.6735</td><td class="number">0.8094</td><td class="number">0.6923</td><td class="number">0.6923</td><td class="number">0.6923</td></tr>
+                <tr><td>9</td><td class="number">0.7347</td><td class="number">0.7358</td><td class="number">0.7308</td><td class="number">0.7600</td><td class="number">0.7451</td></tr>
+                <tr><td>Mean</td><td class="number">0.6908</td><td class="number">0.7559</td><td class="number">0.7043</td><td class="number">0.7169</td><td class="number">0.7075</td></tr>
+                <tr><td>Std</td><td class="number">0.0408</td><td class="number">0.0465</td><td class="number">0.0830</td><td class="number">0.0393</td><td class="number">0.0490</td></tr>
+
+            </table>
+
+            <h3>ROC Curve</h3>
+            <img src="/cs7641/assets/final_report/02_lr_roc.png" />
+
+
+            <h2>Model 3: Random Forest Classifier</h2>
+            <h3>Hyperparameters</h3>
+            <pre><code>RandomForestClassifier (bootstrap=False, ccp_alpha=0.0, class_weight='balanced_subsample', criterion='gini',
+                        max_depth=6, max_features='log2', max_leaf_nodes=None, max_samples=None, min_impurity_decrease=0.001,
+                        min_impurity_split=None, min_samples_leaf=6, min_samples_split=9, min_weight_fraction_leaf=0.0,
+                        n_estimators=190, n_jobs=-1, oob_score=False, random_state=123, verbose=0, warm_start=False)</code></pre>
+
+            <h3>Cross Validation Stats</h3>
+            <table>
+                <tr>
+                    <th>Fold</th>
+                    <th class="number">Accuracy</th>
+                    <th class="number">AUC</th>
+                    <th class="number">Recall</th>
+                    <th class="number">Prec</th>
+                    <th class="number">F1</th>
+                </tr>
+                <tr><td>0</td><td class="number">0.6200</td><td class="number">0.6006</td><td class="number">0.6667</td><td class="number">0.6429</td><td class="number">0.6545</td></tr>
+                <tr><td>1</td><td class="number">0.6400</td><td class="number">0.6908</td><td class="number">0.5926</td><td class="number">0.6957</td><td class="number">0.6400</td></tr>
+                <tr><td>2</td><td class="number">0.6800</td><td class="number">0.7601</td><td class="number">0.6667</td><td class="number">0.7200</td><td class="number">0.6923</td></tr>
+                <tr><td>3</td><td class="number">0.6800</td><td class="number">0.7617</td><td class="number">0.7407</td><td class="number">0.6897</td><td class="number">0.7143</td></tr>
+                <tr><td>4</td><td class="number">0.6200</td><td class="number">0.6973</td><td class="number">0.4815</td><td class="number">0.7222</td><td class="number">0.5778</td></tr>
+                <tr><td>5</td><td class="number">0.6000</td><td class="number">0.6329</td><td class="number">0.7778</td><td class="number">0.6000</td><td class="number">0.6774</td></tr>
+                <tr><td>6</td><td class="number">0.7000</td><td class="number">0.7230</td><td class="number">0.7037</td><td class="number">0.7308</td><td class="number">0.7170</td></tr>
+                <tr><td>7</td><td class="number">0.7600</td><td class="number">0.8093</td><td class="number">0.8077</td><td class="number">0.7500</td><td class="number">0.7778</td></tr>
+                <tr><td>8</td><td class="number">0.6939</td><td class="number">0.7241</td><td class="number">0.6923</td><td class="number">0.7200</td><td class="number">0.7059</td></tr>
+                <tr><td>9</td><td class="number">0.7143</td><td class="number">0.7308</td><td class="number">0.7308</td><td class="number">0.7308</td><td class="number">0.7308</td></tr>
+                <tr><td>Mean</td><td class="number">0.6708</td><td class="number">0.7131</td><td class="number">0.6861</td><td class="number">0.7002</td><td class="number">0.6888</td></tr>
+                <tr><td>Std</td><td class="number">0.0475</td><td class="number">0.0585</td><td class="number">0.0894</td><td class="number">0.0437</td><td class="number">0.0524</td></tr>
+
+            </table>
+
+            <h3>ROC Curve</h3>
+            <img src="/cs7641/assets/final_report/03_rf_roc.png" />
+
+
+            <h2>Model 4: Gradient Boost Classifier</h2>
+            <h3>Hyperparameters</h3>
+            <pre><code>GradientBoostingClassifier (ccp_alpha=0.0, criterion='friedman_mse, init=None, learning_rate=0.01, loss='deviance', max_depth=7,
+                            max_features='sqrt', max_leaf_nodes=None, min_impurity_decrease=0.05, min_impurity_split=None,
+                            min_samples_leaf=2, min_samples_split=2, min_weight_fraction_leaf=0.0, n_estimators=140,
+                            n_iter_no_change=None, presort='deprecated', random_State=123, subsample=0.35, tol=0.0001,
+                            validation_fraction=0.1, verbose=0, warm_start=False)</code></pre>
+
+            <h3>Cross Validation Stats</h3>
+            <table>
+                <tr>
+                    <th>Fold</th>
+                    <th class="number">Accuracy</th>
+                    <th class="number">AUC</th>
+                    <th class="number">Recall</th>
+                    <th class="number">Prec</th>
+                    <th class="number">F1</th>
+                </tr>
+                <tr><td>0</td><td class="number">0.5800</td><td class="number">0.6200</td><td class="number">0.5926</td><td class="number">0.6154</td><td class="number">0.6038</td></tr>
+                <tr><td>1</td><td class="number">0.6200</td><td class="number">0.6876</td><td class="number">0.5926</td><td class="number">0.6667</td><td class="number">0.6275</td></tr>
+                <tr><td>2</td><td class="number">0.7200</td><td class="number">0.7794</td><td class="number">0.7407</td><td class="number">0.7407</td><td class="number">0.7407</td></tr>
+                <tr><td>3</td><td class="number">0.7000</td><td class="number">0.7665</td><td class="number">0.8148</td><td class="number">0.6875</td><td class="number">0.7458</td></tr>
+                <tr><td>4</td><td class="number">0.6600</td><td class="number">0.7101</td><td class="number">0.6667</td><td class="number">0.6923</td><td class="number">0.6792</td></tr>
+                <tr><td>5</td><td class="number">0.6200</td><td class="number">0.6586</td><td class="number">0.7778</td><td class="number">0.6176</td><td class="number">0.6885</td></tr>
+                <tr><td>6</td><td class="number">0.7200</td><td class="number">0.7214</td><td class="number">0.7778</td><td class="number">0.7241</td><td class="number">0.7500</td></tr>
+                <tr><td>7</td><td class="number">0.6600</td><td class="number">0.7708</td><td class="number">0.7692</td><td class="number">0.6452</td><td class="number">0.7018</td></tr>
+                <tr><td>8</td><td class="number">0.6735</td><td class="number">0.7559</td><td class="number">0.7308</td><td class="number">0.6786</td><td class="number">0.7037</td></tr>
+                <tr><td>9</td><td class="number">0.6939</td><td class="number">0.7107</td><td class="number">0.6923</td><td class="number">0.7200</td><td class="number">0.7059</td></tr>
+                <tr><td>Mean</td><td class="number">0.6647</td><td class="number">0.7181</td><td class="number">0.7155</td><td class="number">0.6788</td><td class="number">0.6947</td></tr>
+                <tr><td>Std</td><td class="number">0.0442</td><td class="number">0.0495</td><td class="number">0.0738</td><td class="number">0.0411</td><td class="number">0.0459</td></tr>
+
+            </table>
+
+            <h3>ROC Curve</h3>
+            <img src="/cs7641/assets/final_report/04_gb_roc.png" />
+
+
+            <h2>Model 5: SVM</h2>
+            <h3>Hyperparameters</h3>
+            <pre><code>SGDClassifier (alpha=0.15, average=False, class_weight=None, early_stopping=False, epsilon=0.1, eta0=0.5, fit_intercept=False,
+               l1_ratio=0.7800000001, learning_rate='adaptive', loss='hinge', max_iter=1000, n_iter_no_change=5, n_jobs=-1
+               penalty='elasticnet', power_t=0.5, random_state=123, shuffle=True, tol=0.001, validation_fraction=0.1, verbose=0,
+               warm_start=False)</code></pre>
+
+            <h3>Cross Validation Stats</h3>
+            <table>
+                <tr>
+                    <th>Fold</th>
+                    <th class="number">Accuracy</th>
+                    <th class="number">AUC</th>
+                    <th class="number">Recall</th>
+                    <th class="number">Prec</th>
+                    <th class="number">F1</th>
+                </tr>
+                <tr><td>0</td><td class="number">0.6600</td><td class="number">0.0000</td><td class="number">0.7037</td><td class="number">0.6786</td><td class="number">0.6909</td></tr>
+                <tr><td>1</td><td class="number">0.6400</td><td class="number">0.0000</td><td class="number">0.5185</td><td class="number">0.7368</td><td class="number">0.6087</td></tr>
+                <tr><td>2</td><td class="number">0.7200</td><td class="number">0.0000</td><td class="number">0.6667</td><td class="number">0.7826</td><td class="number">0.7200</td></tr>
+                <tr><td>3</td><td class="number">0.7000</td><td class="number">0.0000</td><td class="number">0.7407</td><td class="number">0.7143</td><td class="number">0.7273</td></tr>
+                <tr><td>4</td><td class="number">0.6600</td><td class="number">0.0000</td><td class="number">0.5926</td><td class="number">0.7273</td><td class="number">0.6531</td></tr>
+                <tr><td>5</td><td class="number">0.6400</td><td class="number">0.0000</td><td class="number">0.7778</td><td class="number">0.6364</td><td class="number">0.7000</td></tr>
+                <tr><td>6</td><td class="number">0.7400</td><td class="number">0.0000</td><td class="number">0.7778</td><td class="number">0.7500</td><td class="number">0.7636</td></tr>
+                <tr><td>7</td><td class="number">0.7200</td><td class="number">0.0000</td><td class="number">0.7308</td><td class="number">0.7308</td><td class="number">0.7308</td></tr>
+                <tr><td>8</td><td class="number">0.7143</td><td class="number">0.0000</td><td class="number">0.7308</td><td class="number">0.7308</td><td class="number">0.7308</td></tr>
+                <tr><td>9</td><td class="number">0.7143</td><td class="number">0.0000</td><td class="number">0.6923</td><td class="number">0.7500</td><td class="number">0.7200</td></tr>
+                <tr><td>Mean</td><td class="number">0.6909</td><td class="number">0.0000</td><td class="number">0.6932</td><td class="number">0.7238</td><td class="number">0.7045</td></tr>
+                <tr><td>Std</td><td class="number">0.0352</td><td class="number">0.0000</td><td class="number">0.0780</td><td class="number">0.0386</td><td class="number">0.0423</td></tr>
+
+            </table>
+
+            <p>As we can see, the best model in terms of accuracy is the Naive Bayes model. We are comparing and selecting the model based on accuracy because there is no class imbalance in the dataset and, hence, accuracy is a fair metric to make comparisons on.</p>
+
+
+            <h1>Conclusion</h1>
+            <p>After following the model selection process described in the previous section, we calculated accuracy on the test set by the trained and hyperparameter tuned Naive Bayes model. The final accuracy that we get on the test is <strong>63.55%</strong>. Other scores are shown in the tables below</p>
+
+            <table>
+                <tr>
+                    <th>Model</th>
+                    <th class="number">Accuracy</th>
+                    <th class="number">AUC</th>
+                    <th class="number">Recall</th>
+                    <th class="number">Prec.</th>
+                    <th class="number">F1</th>
+                </tr>
+                <tr>
+                    <td>Naive Bayes</td>
+                    <td class="number">0.6355</td>
+                    <td class="number">0.6779</td>
+                    <td class="number">0.7009</td>
+                    <td class="number">0.6560</td>
+                    <td class="number">0.6777</td>
+                </tr>
+            </table>
+
+            <p>The confusion matrix on the test set is also shown below</p>
+            <img src="/cs7641/assets/final_report/04_gb_confusion_matrix.png" />
+
+            <p>After comparing several models of varying complexity, we found that Naive Bayes performed the best. We could think of a couple of reasons for Naive Bayes model's best performance for our dataset</p>
+            <ol>
+                <li>The dataset that we have chosen is simple (only 5 features after PCA). Our result is in accordance with Occam's razor which states that the simplest explanation is preferable to one that is more complex. Naive Bayes is a relatively simple model with fewer assumptions and hence, works well on a simple dataset.</li>
+                <li>After performing PCA, we get 5 <strong>independent</strong> predictors which satisfies Naive Bayes' assumption of feature independence.</li>
+            </ol>
+            <h1>Appendix</h1>
+            <h2>A. Data Dictionary</h2>
+            <table>
+                <tr><th>Table_Stats</th><th>Stats</th><th>Description</th></tr>
+                <tr><td>Rk</td><td>Rk</td><td>Rank</td></tr>
+                <tr><td>Team</td><td>Team</td><td>Team</td></tr>
+                <tr><td>G</td><td>G</td><td>Games Played</td></tr>
+                <tr><td>Playoffs</td><td>Playoffs</td><td>Made Playoffs?</td></tr>
+                <tr><td>PG_Rk</td><td>Rk</td><td>Rank</td></tr>
+                <tr><td>PG_MP</td><td>MP</td><td>Avg Minutes Played</td></tr>
+                <tr><td>PG_FG</td><td>FG</td><td>Avg FG Made</td></tr>
+                <tr><td>PG_FGA</td><td>FGA</td><td>Avg FG Attempted</td></tr>
+                <tr><td>PG_FG%</td><td>FG%</td><td>Avg FG Percentage</td></tr>
+                <tr><td>PG_3P</td><td>3P</td><td>Avg 3PT Made</td></tr>
+                <tr><td>PG_3PA</td><td>3PA</td><td>Avg 3PT Attempted</td></tr>
+                <tr><td>PG_3P%</td><td>3P%</td><td>Avg 3PT Percentage</td></tr>
+                <tr><td>PG_2P</td><td>2P</td><td>Avg 2PT Made</td></tr>
+                <tr><td>PG_2PA</td><td>2PA</td><td>Avg 2PT Attempted</td></tr>
+                <tr><td>PG_2P%</td><td>2P%</td><td>Avg 2P Percentage</td></tr>
+                <tr><td>PG_FT</td><td>FT</td><td>Avg FT Made</td></tr>
+                <tr><td>PG_FTA</td><td>FTA</td><td>Avg FT Attempted</td></tr>
+                <tr><td>PG_FT%</td><td>FT%</td><td>Avg FT Percentage</td></tr>
+                <tr><td>PG_ORB</td><td>ORB</td><td>Avg Offensive Rebounds</td></tr>
+                <tr><td>PG_DRB</td><td>DRB</td><td>Avg Defensive Rebounds</td></tr>
+                <tr><td>PG_TRB</td><td>TRB</td><td>Avg Total Rebounds</td></tr>
+                <tr><td>PG_AST</td><td>AST</td><td>Avg Assists</td></tr>
+                <tr><td>PG_STL</td><td>STL</td><td>Avg Steals</td></tr>
+                <tr><td>PG_BLK</td><td>BLK</td><td>Avg Blocks</td></tr>
+                <tr><td>PG_TOV</td><td>TOV</td><td>Avg Turnovers</td></tr>
+                <tr><td>PG_PF</td><td>PF</td><td>Avg Personal Fouls</td></tr>
+                <tr><td>PG_PTS</td><td>PTS</td><td>Avg Points Scored</td></tr>
+                <tr><td>PG_Opp_Rk</td><td>Rk</td><td>Rank</td></tr>
+                <tr><td>PG_Opp_MP</td><td>MP</td><td>Avg Minutes Played</td></tr>
+                <tr><td>PG_Opp_FG</td><td>FG</td><td>Avg FG Made</td></tr>
+                <tr><td>PG_Opp_FGA</td><td>FGA</td><td>Avg FG Attempted</td></tr>
+                <tr><td>PG_Opp_FG%</td><td>FG%</td><td>Avg FG Percentage</td></tr>
+                <tr><td>PG_Opp_3P</td><td>3P</td><td>Avg 3PT Made</td></tr>
+                <tr><td>PG_Opp_3PA</td><td>3PA</td><td>Avg 3PT Attempted</td></tr>
+                <tr><td>PG_Opp_3P%</td><td>3P%</td><td>Avg 3PT Percentage</td></tr>
+                <tr><td>PG_Opp_2P</td><td>2P</td><td>Avg 2PT Made</td></tr>
+                <tr><td>PG_Opp_2PA</td><td>2PA</td><td>Avg 2PT Attempted</td></tr>
+                <tr><td>PG_Opp_2P%</td><td>2P%</td><td>Avg 2P Percentage</td></tr>
+                <tr><td>PG_Opp_FT</td><td>FT</td><td>Avg FT Made</td></tr>
+                <tr><td>PG_Opp_FTA</td><td>FTA</td><td>Avg FT Attempted</td></tr>
+                <tr><td>PG_Opp_FT%</td><td>FT%</td><td>Avg FT Percentage</td></tr>
+                <tr><td>PG_Opp_ORB</td><td>ORB</td><td>Avg Offensive Rebounds</td></tr>
+                <tr><td>PG_Opp_DRB</td><td>DRB</td><td>Avg Defensive Rebounds</td></tr>
+                <tr><td>PG_Opp_TRB</td><td>TRB</td><td>Avg Total Rebounds</td></tr>
+                <tr><td>PG_Opp_AST</td><td>AST</td><td>Avg Assists</td></tr>
+                <tr><td>PG_Opp_STL</td><td>STL</td><td>Avg Steals</td></tr>
+                <tr><td>PG_Opp_BLK</td><td>BLK</td><td>Avg Blocks</td></tr>
+                <tr><td>PG_Opp_TOV</td><td>TOV</td><td>Avg Turnovers</td></tr>
+                <tr><td>PG_Opp_PF</td><td>PF</td><td>Avg Personal Fouls</td></tr>
+                <tr><td>PG_Opp_PTS</td><td>PTS</td><td>Avg Points Scored</td></tr>
+                <tr><td>Adv_Rk</td><td>Adv_Rk</td><td>Ranking based on Pythagorean Wins</td></tr>
+                <tr><td>Adv_Team</td><td>Adv_Team</td><td>Team Name</td></tr>
+                <tr><td>Adv_Age</td><td>Adv_Age</td><td>Average Player age as of Feb 1</td></tr>
+                <tr><td>Adv_W</td><td>Adv_W</td><td>Wins</td></tr>
+                <tr><td>Adv_L</td><td>Adv_L</td><td>Losses</td></tr>
+                <tr><td>Adv_PW</td><td>Adv_PW</td><td>Pythagorean Wins</td></tr>
+                <tr><td>Adv_PL</td><td>Adv_PL</td><td>Pythagorean Losses</td></tr>
+                <tr><td>Adv_MOV</td><td>Adv_MOV</td><td>Margin of Victory</td></tr>
+                <tr><td>Adv_SOS</td><td>Adv_SOS</td><td>Strength of Schedule</td></tr>
+                <tr><td>Adv_SRS</td><td>Adv_SRS</td><td>Simple Rating System</td></tr>
+                <tr><td>Adv_ORtg</td><td>Adv_ORtg</td><td>Offensive Rating</td></tr>
+                <tr><td>Adv_DRtg</td><td>Adv_DRtg</td><td>Defensive Rating</td></tr>
+                <tr><td>Adv_NRtg</td><td>Adv_NRtg</td><td>Net Rating</td></tr>
+                <tr><td>Adv_Pace</td><td>Adv_Pace</td><td>Pace</td></tr>
+                <tr><td>Adv_FTr</td><td>Adv_FTr</td><td>Free Throw Attempt Rate</td></tr>
+                <tr><td>Adv_3PAr</td><td>Adv_3PAr</td><td>3 Point Attempt Rate</td></tr>
+                <tr><td>Adv_TS%</td><td>Adv_TS%</td><td>True Shooting Percentage</td></tr>
+                <tr><td>Adv_eFG%</td><td>Adv_eFG%</td><td>Effective Field Goal Percentage</td></tr>
+                <tr><td>Adv_TOV%</td><td>Adv_TOV%</td><td>Turnovers Percentage</td></tr>
+                <tr><td>Adv_ORB%</td><td>Adv_ORB%</td><td>Offensive Rebound Percentage</td></tr>
+                <tr><td>Adv_FT/FGA</td><td>Adv_FT/FGA</td><td>Free Throws per FG attempt</td></tr>
+                <tr><td>Adv_eFG%</td><td>Adv_eFG%</td><td>Opponent eFG</td></tr>
+                <tr><td>Adv_TOV%</td><td>Adv_TOV%</td><td>Turnovers Percentage</td></tr>
+                <tr><td>Adv_DRB%</td><td>Adv_DRB%</td><td>Defensive Rebound Percentage</td></tr>
+                <tr><td>Adv_FT/FGA</td><td>Adv_FT/FGA</td><td>Free Throws per FG attempt</td></tr>
+                <tr><td>Adv_Arena</td><td>Adv_Arena</td><td>Arena</td></tr>
+                <tr><td>Adv_Attend.</td><td>Adv_Attend.</td><td>Attendance</td></tr>
+                <tr><td>SHT_Rk</td><td>RK</td><td>Rank</td></tr>
+                <tr><td>SHT_MP</td><td>MP</td><td>Minutes Played</td></tr>
+                <tr><td>SHT_FG_Pct</td><td>FG%</td><td>Field Goal Percentage</td></tr>
+                <tr><td>SHT_FG_Dist</td><td>Dist.</td><td>Avg Distance of FGA</td></tr>
+                <tr><td>SHT_X2P_Split</td><td>2P_FGA%</td><td>2-pointer FGA%</td></tr>
+                <tr><td>SHT_D0.3_Split</td><td>0-3_FGA%</td><td>0-3 feet FGA%</td></tr>
+                <tr><td>SHT_D3.10_Split</td><td>3-10_FGA%</td><td>3-10 feet FGA%</td></tr>
+                <tr><td>SHT_D10.16_Split</td><td>10-16_FGA%</td><td>10-16 feet FGA%</td></tr>
+                <tr><td>SHT_D16.3PT_Split</td><td>16-3p_FGA%</td><td>16 - 3-pointer-line feet FGA%</td></tr>
+                <tr><td>SHT_X3P_Split</td><td>3P_FGA%</td><td>3-pointer FGA%</td></tr>
+                <tr><td>SHT_X2P_Pct</td><td>2P_FG%</td><td>2-pointer FG%</td></tr>
+                <tr><td>SHT_D0.3_Pct</td><td>0-3_FG%</td><td>0-3 feet FG%</td></tr>
+                <tr><td>SHT_D3.10_Pct</td><td>3-10_FG%</td><td>3-10 feet FG%</td></tr>
+                <tr><td>SHT_D10.16_Pct</td><td>10-16_FG%</td><td>10-16 feet FG%</td></tr>
+                <tr><td>SHT_D16.3PT_Pct</td><td>16-3p_FG%</td><td>16-3pointer feet FG%</td></tr>
+                <tr><td>SHT_X3P_Pct</td><td>3P_FG%</td><td>3-pointer FG%</td></tr>
+                <tr><td>SHT_X2P_PctAst</td><td>2P_Ast%</td><td>2p Assist %</td></tr>
+                <tr><td>SHT_X3P_PctAst</td><td>3P_Ast%</td><td>3p Assist %</td></tr>
+                <tr><td>SHT_Dunks_Pct</td><td>Dunks_FGA%</td><td>Dunks FGA%</td></tr>
+                <tr><td>SHT_Dunks</td><td>Dunks_Md</td><td>Dunk made</td></tr>
+                <tr><td>SHT_Corner_Split</td><td>Corner_3PA%</td><td>Corner 3 Percentage</td></tr>
+                <tr><td>SHT_Corner_Pct</td><td>Coner_FG%</td><td>Coner 3 FG%</td></tr>
+                <tr><td>SHT_Opp_Rk</td><td>RK</td><td>Rank</td></tr>
+                <tr><td>SHT_Opp_MP</td><td>MP</td><td>Minutes Played</td></tr>
+                <tr><td>SHT_Opp_FG_Pct</td><td>FG%</td><td>Field Goal Percentage</td></tr>
+                <tr><td>SHT_Opp_FG_Dist</td><td>Dist.</td><td>Avg Distance of FGA</td></tr>
+                <tr><td>SHT_Opp_X2P_Split</td><td>2P_FGA%</td><td>2-pointer FGA%</td></tr>
+                <tr><td>SHT_Opp_D0.3_Split</td><td>0-3_FGA%</td><td>0-3 feet FGA%</td></tr>
+                <tr><td>SHT_Opp_D3.10_Split</td><td>3-10_FGA%</td><td>3-10 feet FGA%</td></tr>
+                <tr><td>SHT_Opp_D10.16_Split</td><td>10-16_FGA%</td><td>10-16 feet FGA%</td></tr>
+                <tr><td>SHT_Opp_D16.3PT_Split</td><td>16-3p_FGA%</td><td>16 - 3-pointer-line feet FGA%</td></tr>
+                <tr><td>SHT_Opp_X3P_Split</td><td>3P_FGA%</td><td>3-pointer FGA%</td></tr>
+                <tr><td>SHT_Opp_X2P_Pct</td><td>2P_FG%</td><td>2-pointer FG%</td></tr>
+                <tr><td>SHT_Opp_D0.3_Pct</td><td>0-3_FG%</td><td>0-3 feet FG%</td></tr>
+                <tr><td>SHT_Opp_D3.10_Pct</td><td>3-10_FG%</td><td>3-10 feet FG%</td></tr>
+                <tr><td>SHT_Opp_D10.16_Pct</td><td>10-16_FG%</td><td>10-16 feet FG%</td></tr>
+                <tr><td>SHT_Opp_D16.3PT_Pct</td><td>16-3p_FG%</td><td>16-3pointer feet FG%</td></tr>
+                <tr><td>SHT_Opp_X3P_Pct</td><td>3P_FG%</td><td>3-pointer FG%</td></tr>
+                <tr><td>SHT_Opp_X2P_PctAst</td><td>2P_Ast%</td><td>2p Assist %</td></tr>
+                <tr><td>SHT_Opp_X3P_PctAst</td><td>3P_Ast%</td><td>3p Assist %</td></tr>
+                <tr><td>SHT_Opp_Dunks_Pct</td><td>Dunks_FGA%</td><td>Dunks FGA%</td></tr>
+                <tr><td>SHT_Opp_Dunks</td><td>Dunks_Md</td><td>Dunk made</td></tr>
+                <tr><td>SHT_Opp_Corner_Split</td><td>Corner_3PA%</td><td>Corner 3 Percentage</td></tr>
+                <tr><td>SHT_Opp_Corner_Pct</td><td>Coner_FG%</td><td>Coner 3 FG%</td></tr>
+
+            </table>
+        </article>
+        
+        
+    </body>
+</html>
